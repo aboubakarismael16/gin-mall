@@ -46,8 +46,8 @@ func Init() {
 	LoadServer(file)
 	LoadMysqlData(file)
 	LoadPath(file)
+	LoadEmail(file)
 	//LoadQiniu(file)
-	//LoadEmail(file)
 	//LoadEs(file)
 
 	//MySQL
