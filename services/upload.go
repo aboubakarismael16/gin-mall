@@ -27,6 +27,25 @@ func UploadAvatarToLocalStatic(file multipart.File, userId uint, userName string
 	return "user" + bId + "/" + userName + ".jpg", nil
 }
 
+func UploadProductToLocalStatic(file multipart.File, userId uint, productName string) (filePath string, err error) {
+	bId := strconv.Itoa(int(userId))
+	basePath := "." + conf.ProductPath + "boss" + bId + "/"
+	if !DirExistOrNot(basePath) {
+		CreateDir(basePath)
+	}
+	productPath := basePath + productName + ".jpg"
+	content, err := ioutil.ReadAll(file)
+	if err != nil {
+		return "", err
+	}
+	err = ioutil.WriteFile(productPath, content, 0666)
+	if err != nil {
+		return
+	}
+
+	return "boss" + bId + "/" + productName + ".jpg", nil
+}
+
 func DirExistOrNot(fileAddr string) bool {
 	s, err := os.Stat(fileAddr)
 	if err != nil {
