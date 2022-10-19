@@ -9,3 +9,8 @@ time="2022-10-19 10:27:51" level=info msg="Key: 'ProductService.Title' Error:Fie
 time="2022-10-19 10:28:24" level=info msg="Key: 'ProductService.Title' Error:Field validation for 'Title' failed on the 'min' tag"
 time="2022-10-19 10:28:26" level=info msg="Key: 'ProductService.Title' Error:Field validation for 'Title' failed on the 'min' tag"
 time="2022-10-19 10:31:37" level=info msg="Key: 'ProductService.Title' Error:Field validation for 'Title' failed on the 'required' tag"
+time="2022-10-19 10:55:31" level=info msg="Key: 'ProductService.Title' Error:Field validation for 'Title' failed on the 'required' tag"
+time="2022-10-19 10:56:02" level=info msg="Key: 'ProductService.Title' Error:Field validation for 'Title' failed on the 'required' tag"
+time="2022-10-19 10:57:02" level=info msg="Key: 'ProductService.Title' Error:Field validation for 'Title' failed on the 'required' tag"
+time="2022-10-19 10:59:36" level=info msg="Key: 'ProductService.Info' Error:Field validation for 'Info' failed on the 'required' tag"
+time="2022-10-19 10:59:59" level=info msg="Key: 'ProductService.Title' Error:Field validation for 'Title' failed on the 'required' tag"
