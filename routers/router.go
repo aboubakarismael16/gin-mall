@@ -24,6 +24,9 @@ func NewRouter() *gin.Engine {
 
 		//商品操作
 		v1.GET("products", api.ListProducts)
+		v1.GET("products/:id", api.ShowProducts)
+		v1.GET("imgs/:id", api.ListProductsImg)
+		v1.GET("categories", api.ListCategory)
 
 		v1.GET("carousels", api.ListCarousels) //轮播图
 
@@ -42,6 +45,11 @@ func NewRouter() *gin.Engine {
 			// 商品操作
 			authed.POST("product", api.CreateProduct)
 			authed.POST("products", api.SearchProduct)
+
+			//add to favorite list
+			authed.GET("favorites", api.ShowFavorites)
+			authed.POST("favorites", api.CreateFavorite)
+			authed.DELETE("favorites/:id", api.DeleteFavorite)
 		}
 	}
 

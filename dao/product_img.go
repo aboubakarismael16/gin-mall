@@ -29,3 +29,8 @@ func (dao *ProductImgDao) ListProductImgByProductId(pId uint) (products []*model
 		Where("product_id=?", pId).Find(&products).Error
 	return
 }
+
+func (dao *ProductImgDao) ListProductImg(productId uint) (productImg []*model.ProductImg, err error) {
+	err = dao.DB.Model(&model.ProductImg{}).Where("product_id=?", productId).Find(&productImg).Error
+	return
+}
