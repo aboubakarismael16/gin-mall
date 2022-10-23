@@ -25,7 +25,7 @@ func (service *FavoritesService) Show(ctx context.Context, uId uint) serializer.
 	if service.PageSize == 0 {
 		service.PageSize = 15
 	}
-	favorites, total, err := favoritesDao.ListFavoriteByUserId(uId, service.PageSize, service.PageNum)
+	favorites, err := favoritesDao.ListFavorite(uId)
 	if err != nil {
 		util.LogrusObj.Infoln(err)
 		code = e.ErrorDatabase
@@ -35,7 +35,7 @@ func (service *FavoritesService) Show(ctx context.Context, uId uint) serializer.
 			Error:  err.Error(),
 		}
 	}
-	return serializer.BuildListResponse(serializer.BuildFavorites(ctx, favorites), uint(total))
+	return serializer.BuildListResponse(serializer.BuildFavorites(ctx, favorites), uint(len(favorites)))
 }
 
 // Create 创建收藏夹
@@ -61,7 +61,7 @@ func (service *FavoritesService) Create(ctx context.Context, uId uint) serialize
 		}
 	}
 
-	bossDao := dao.NewUserDaoByDB(userDao.DB)
+	bossDao := dao.NewUserDao(ctx)
 	boss, err := bossDao.GetUserById(service.BossId)
 	if err != nil {
 		code = e.ErrorDatabase
@@ -89,7 +89,7 @@ func (service *FavoritesService) Create(ctx context.Context, uId uint) serialize
 		BossID:    service.BossId,
 		Boss:      *boss,
 	}
-	favoriteDao = dao.NewFavoritesDaoByDB(favoriteDao.DB)
+	//favoriteDao = dao.NewFavoritesDaoByDB(favoriteDao.DB)
 	err = favoriteDao.CreateFavorite(favorite)
 	if err != nil {
 		code = e.ErrorDatabase

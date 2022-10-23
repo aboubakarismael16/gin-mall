@@ -18,6 +18,11 @@ func NewFavoritesDaoByDB(db *gorm.DB) *FavoritesDao {
 	return &FavoritesDao{db}
 }
 
+func (dao *FavoritesDao) ListFavorite(uId uint) (resp []*model.Favorite, err error) {
+	err = dao.DB.Model(&model.Favorite{}).Where("user_id=?", uId).Find(&resp).Error
+	return
+}
+
 // ListFavoriteByUserId 通过 user_id 获取收藏夹列表
 func (dao *FavoritesDao) ListFavoriteByUserId(uId uint, pageSize, pageNum int) (favorites []*model.Favorite, total int64, err error) {
 	// 总数
@@ -35,7 +40,8 @@ func (dao *FavoritesDao) ListFavoriteByUserId(uId uint, pageSize, pageNum int) (
 
 // CreateFavorite 创建收藏夹
 func (dao *FavoritesDao) CreateFavorite(favorite *model.Favorite) (err error) {
-	err = dao.DB.Create(&favorite).Error
+	//err = dao.DB.Create(&favorite).Error
+	err = dao.DB.Model(&model.Favorite{}).Create(&favorite).Error
 	return
 }
 
@@ -52,7 +58,7 @@ func (dao *FavoritesDao) FavoriteExistOrNot(pId, uId uint) (exist bool, err erro
 }
 
 // DeleteFavoriteById 删除收藏夹
-func (dao *FavoritesDao) DeleteFavoriteById(fId, uId uint) (err error) {
-	err = dao.DB.Where("id=? AND user_id=?", fId, uId).Delete(&model.Favorite{}).Error
+func (dao *FavoritesDao) DeleteFavoriteById(uId, fId uint) (err error) {
+	err = dao.DB.Where("id = ? AND user_id = ?", fId, uId).Delete(&model.Favorite{}).Error
 	return
 }

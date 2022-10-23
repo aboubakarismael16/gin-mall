@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 创建收藏
+// CreateFavorite 创建收藏
 func CreateFavorite(c *gin.Context) {
 	service := services.FavoritesService{}
 	claim, _ := util.ParseToken(c.GetHeader("Authorization"))
@@ -19,7 +19,7 @@ func CreateFavorite(c *gin.Context) {
 	}
 }
 
-// 收藏夹详情接口
+// ShowFavorites 收藏夹详情接口
 func ShowFavorites(c *gin.Context) {
 	service := services.FavoritesService{}
 	claim, _ := util.ParseToken(c.GetHeader("Authorization"))
