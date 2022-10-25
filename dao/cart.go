@@ -75,8 +75,8 @@ func (dao *CartDao) UpdateCartNumById(cId, num uint) (err error) {
 }
 
 // DeleteCartById 通过 cart_id 删除 cart
-func (dao *CartDao) DeleteCartById(cId uint) (err error) {
+func (dao *CartDao) DeleteCartById(uId uint) (err error) {
 	err = dao.DB.Model(&model.Cart{}).
-		Where("id=?", cId).Delete(&model.Cart{}).Error
+		Where("user_id=?", uId).Delete(&model.Cart{}).Error
 	return
 }

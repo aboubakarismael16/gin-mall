@@ -41,7 +41,7 @@ func UpdateCart(c *gin.Context) {
 func DeleteCart(c *gin.Context) {
 	deleteCartService := services.CartService{}
 	if err := c.ShouldBind(&deleteCartService); err == nil {
-		res := deleteCartService.Delete(c.Request.Context())
+		res := deleteCartService.Delete(c.Request.Context(), c.Param("id"))
 		c.JSON(200, res)
 	} else {
 		c.JSON(400, ErrorResponse(err))

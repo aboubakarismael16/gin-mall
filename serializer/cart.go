@@ -7,7 +7,7 @@ import (
 	"gin-mall/models"
 )
 
-// 购物车
+// Cart 购物车
 type Cart struct {
 	ID            uint   `json:"id"`
 	UserID        uint   `json:"user_id"`

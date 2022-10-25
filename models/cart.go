@@ -2,13 +2,13 @@ package model
 
 import "gorm.io/gorm"
 
-// 购物车模型
+// Cart 购物车模型
 type Cart struct {
 	gorm.Model
-	UserID    uint
+	UserID    uint `gorm:"not nul"`
 	ProductID uint `gorm:"not null"`
-	BossID    uint
-	Num       uint
-	MaxNum    uint
+	BossID    uint `gorm:"not nul"`
+	Num       uint `gorm:"not nul"`
+	MaxNum    uint `gorm:"not nul"`
 	Check     bool
 }

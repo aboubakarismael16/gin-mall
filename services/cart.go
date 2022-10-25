@@ -97,10 +97,11 @@ func (service *CartService) Update(ctx context.Context, cId string) serializer.R
 }
 
 // Delete 删除购物车
-func (service *CartService) Delete(ctx context.Context) serializer.Response {
+func (service *CartService) Delete(ctx context.Context, uId string) serializer.Response {
 	code := e.SUCCESS
 	cartDao := dao.NewCartDao(ctx)
-	err := cartDao.DeleteCartById(service.Id)
+	uid, _ := strconv.Atoi(uId)
+	err := cartDao.DeleteCartById(uint(uid))
 	if err != nil {
 		util.LogrusObj.Infoln(err)
 		code = e.ErrorDatabase
