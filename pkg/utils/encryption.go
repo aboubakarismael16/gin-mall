@@ -9,7 +9,7 @@ import (
 
 var Encrypt *Encryption
 
-// AES 加密算法
+// Encryption AES 加密算法
 type Encryption struct {
 	key string
 }
@@ -18,20 +18,20 @@ func init() {
 	Encrypt = NewEncryption()
 }
 
-func NewEncryption() *Encryption{
+func NewEncryption() *Encryption {
 	return &Encryption{}
 }
 
-// 填充密码长度
-func PadPwd (srcByte []byte,blockSize int) []byte {
+// PadPwd 填充密码长度
+func PadPwd(srcByte []byte, blockSize int) []byte {
 	padNum := blockSize - len(srcByte)%blockSize
 	ret := bytes.Repeat([]byte{byte(padNum)}, padNum)
 	srcByte = append(srcByte, ret...)
 	return srcByte
 }
 
-// 加密
-func (k *Encryption) AesEncoding (src string) string {
+// AesEncoding 加密
+func (k *Encryption) AesEncoding(src string) string {
 	srcByte := []byte(src)
 	block, err := aes.NewCipher([]byte(k.key))
 	if err != nil {
@@ -46,24 +46,24 @@ func (k *Encryption) AesEncoding (src string) string {
 	return pwd
 }
 
-// 去掉填充的部分
-func UnPadPwd(dst []byte) ([]byte,error) {
+// UnPadPwd 去掉填充的部分
+func UnPadPwd(dst []byte) ([]byte, error) {
 	if len(dst) <= 0 {
 		return dst, errors.New("长度有误")
 	}
 	// 去掉的长度
 	unpadNum := int(dst[len(dst)-1])
-	strErr :="error"
+	strErr := "error"
 	op := []byte(strErr)
 	if len(dst) < unpadNum {
-		return op,nil
+		return op, nil
 	}
-	str:=dst[:(len(dst) - unpadNum)]
+	str := dst[:(len(dst) - unpadNum)]
 	return str, nil
 }
 
-// 解密
-func (k *Encryption) AesDecoding (pwd string) string {
+// AesDecoding 解密
+func (k *Encryption) AesDecoding(pwd string) string {
 	pwdByte := []byte(pwd)
 	pwdByte, err := base64.StdEncoding.DecodeString(pwd)
 	if err != nil {
@@ -82,7 +82,7 @@ func (k *Encryption) AesDecoding (pwd string) string {
 	return string(dst)
 }
 
-// set方法
-func (k *Encryption) SetKey (key string) {
+// SetKey set方法
+func (k *Encryption) SetKey(key string) {
 	k.key = key
 }
