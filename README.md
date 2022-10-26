@@ -22,15 +22,15 @@ This project is comprehensive and suitable for beginner to learn ``web developme
 # Project's primary dependency
 
 Golang v1.16+
- -    [gin](github.com/gin-gonic/gin)
- -    [gorm](gorm.io/gorm)
- -    [mysql](github.com/go-sql-driver/mysql)
- -    [redis](github.com/go-redis/redis)
- -    [ini](gopkg.in/ini.v1)
- -    [jwt-go-go](github.com/golang-jwt/jwt/v4)
+ -    [gin](https://github.com/gin-gonic/gin)
+ -    [gorm](https://gorm.io/gorm)
+ -    [mysql](https://github.com/go-sql-driver/mysql)
+ -    [redis](https://github.com/go-redis/redis)
+ -    [ini](https://gopkg.in/ini.v1)
+ -    [jwt-go-go](https://github.com/golang-jwt/jwt/v4)
  -    crypto
- -    [logrus](github.com/sirupsen/logrus)
- -    [dbresolver](github.com/go-gorm-v1/dbresolver)
+ -    [logrus](https://github.com/sirupsen/logrus)
+ -    [dbresolver](https://github.com/go-gorm-v1/dbresolver)
 
 # Project structure
 
